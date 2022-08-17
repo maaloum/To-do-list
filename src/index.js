@@ -1,7 +1,5 @@
-// import './style.css';
 import './style.css';
 
-// creating tasks
 const tasks = [{
   description: 'Gym',
   completed: true,
@@ -21,12 +19,10 @@ const tasks = [{
   index: 3,
 }];
 
-// select the container
 const todos = document.querySelector('.tasks');
-// sort tasks by index
+
 tasks.sort((a, b) => a.index - b.index);
 
-// populate todos
 tasks.forEach((task) => {
   const taskElement = document.createElement('div');
   taskElement.classList.add('tskelement');
