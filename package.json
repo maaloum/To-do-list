@@ -725,7 +725,6 @@
     "webpack-dev-server": "^4.10.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --open --mode development "
   },
   "repository": {
