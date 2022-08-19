@@ -40,9 +40,12 @@ const displayTodo = () => {
   });
   document.querySelectorAll('.delete').forEach((deletable) => {
     deletable.addEventListener('click', (e) => {
-      todos.splice(e.target.id, 1);
-      todos.sort((a, b) => a.index - b.index);
-      localStorage.setItem('todos', JSON.stringify(todos));
+      const newTodos = getTasks();
+      newTodos.splice(e.target.id, 1);
+      newTodos.forEach((todo, index) => {
+        todo.index = index + 1;
+      });
+      localStorage.setItem('todos', JSON.stringify(newTodos));
       displayTodo();
     });
   });
@@ -64,7 +67,7 @@ submit.addEventListener('click', () => {
       const newTask = {
         description: userInput,
         completed: false,
-        index: todos.length,
+        index: todos.length + 1,
       };
       addTask(newTask);
       displayTodo();
