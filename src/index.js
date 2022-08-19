@@ -34,7 +34,6 @@ const displayTodo = () => {
       if (e.target.checked) {
         taskName.style.textDecoration = 'line-through';
         todos[e.target.dataset.id].completed = true;
-        // console.log(todos[e.target.dataset.id].completed);
         btnCompleted.addEventListener('click', () => {
           const completed = todos.filter((todo) => todo.completed === false);
           completed.forEach((todo, index) => {
