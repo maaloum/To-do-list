@@ -6,7 +6,7 @@ let editableID;
 let editBoleen = false;
 const submit = document.querySelector('.enter');
 const input = document.querySelector('.input');
-
+const btnCompleted = document.querySelector('.btnCompleted');
 const displayTodo = () => {
   const taskContainer = document.querySelector('.task-box');
   const todos = getTasks();
@@ -14,7 +14,7 @@ const displayTodo = () => {
   todos.forEach((todo, id) => {
     li += `<li class="task">
                 <label for="${id}">
-                  <input class ="task-cls" type="checkbox">
+                  <input class ="task-cls" type="checkbox" data-id = ${id}>
                   <p>${todo.description}</p>
                 </label>
                 <div class="settings">
@@ -33,6 +33,15 @@ const displayTodo = () => {
       const taskName = e.target.parentElement.lastElementChild;
       if (e.target.checked) {
         taskName.style.textDecoration = 'line-through';
+        todos[e.target.dataset.id].completed = true;
+        btnCompleted.addEventListener('click', () => {
+          const completed = todos.filter((todo) => todo.completed === false);
+          completed.forEach((todo, index) => {
+            todo.index = index + 1;
+          });
+          localStorage.setItem('todos', JSON.stringify(completed));
+          displayTodo();
+        });
       } else {
         taskName.style.textDecoration = 'none';
       }
